@@ -1,0 +1,25 @@
+CREATE OR REPLACE TRIGGER trg_before_emp_insr_5
+BEFORE INSERT
+  on employee_info
+  FOR EACH ROW 
+ 
+DECLARE
+COUNTER number(2);
+emp_age number;
+reminder_text varchar2(200);
+ 
+BEGIN
+	reminder_text := '';
+	COUNTER := 0;
+	IF (EMP_AGE < 18) THEN
+		reminder_text := 'Employee Age must be greater than 18. ';
+		COUNTER := COUNTER + 1;
+    END IF;
+	
+	
+	IF (COUNTER > 0) THEN
+			INSERT INTO EMP_USER_REMINDER1 VALUES (:NEW.EMP_ID,reminder_texT,:NEW.EMP_AGE);
+    END IF;
+	
+	
+END;
